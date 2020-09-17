@@ -1,9 +1,14 @@
 import React from "react";
 import userArray from "./../utils/users.js";
 
-const GenerateEmail = ({ username, murderee }) => {
+const GenerateEmail = ({
+  username,
+  murderee,
+  pageStatus,
+  updatePageStatus,
+}) => {
   const getUserInfo = userArray.filter((user) => user.github === username);
-
+  const turnToLocation = () => updatePageStatus("location");
   return (
     <article>
       <h2>Subject: HELP!!!</h2>
@@ -20,7 +25,9 @@ const GenerateEmail = ({ username, murderee }) => {
         <br />
         Lots of love, a fellow coder x
       </p>
-      <button>What the FAC? Let's Solve some Crime!</button>
+      <button onClick={turnToLocation}>
+        What the FAC? Let's Solve some Crime!
+      </button>
     </article>
   );
 };
