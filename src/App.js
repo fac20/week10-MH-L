@@ -11,6 +11,7 @@ function App() {
   const [username, setUsername] = React.useState("");
   const [pageStatus, updatePageStatus] = React.useState("home");
   const [counter, setCounter] = React.useState(60);
+
   const generateMurderee = (username) => {
     if (username) {
       const potentialSuspects = userArray.filter(
@@ -24,15 +25,17 @@ function App() {
       return murderee;
     }
   };
-  //murderee is index 0 in array, and murderer is index 1
-  const murderee = generateMurderee(username);
+
+  const murderee = React.useMemo(() => {
+    return generateMurderee(username);
+  }, [username]);
 
   if (pageStatus === "home") {
     return (
       // location status is false - render the  line 41-52
       // when you click button = location Sttus True
       //put the status update in generate email
-      <div>
+      <div class="home-div">
         <UserSelection
           username={username}
           setUsername={setUsername}

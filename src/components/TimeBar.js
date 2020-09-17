@@ -15,7 +15,7 @@ const TimeBar = ({ pageStatus, updatePageStatus, counter, setCounter }) => {
   }, [counter, updatePageStatus]);
 
   return (
-    <div>
+    <div class="time-div">
       <h2>Time Left: {counter}</h2>
     </div>
   );
