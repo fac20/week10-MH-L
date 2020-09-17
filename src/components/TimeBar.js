@@ -1,25 +1,22 @@
 import React from "react";
-import GenerateOptions from "./GenerateOptions";
 
-const TimeBar = ({ pageStatus, updatePageStatus }) => {
-  const [counter, setCounter] = React.useState(60);
+const TimeBar = ({ pageStatus, updatePageStatus, counter, setCounter }) => {
+  // make timer count down per second
   React.useEffect(() => {
-    if (counter > 0) {
-      setTimeout(() => setCounter(counter - 1), 1000);
-    } else {
+    const startTimer = setTimeout(() => setCounter((timer) => timer - 1), 1000);
+    return () => clearTimeout(startTimer);
+  }, [counter, setCounter]);
+
+  // if countdown is 0 - the loser page loads
+  React.useEffect(() => {
+    if (counter === 0) {
       updatePageStatus("loser");
     }
-  }, [counter, setCounter, updatePageStatus]);
+  }, [counter, updatePageStatus]);
 
   return (
     <div>
       <h2>Time Left: {counter}</h2>
-      <GenerateOptions
-        counter={counter}
-        setCounter={setCounter}
-        updatePageStatus={updatePageStatus}
-        pageStatus={pageStatus}
-      ></GenerateOptions>
     </div>
   );
 };

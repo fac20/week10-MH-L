@@ -16,7 +16,7 @@ const UserSelection = ({ username, setUsername }) => {
 
   return (
     <form>
-      <label htmlFor="userSelect">Choose a User</label>
+      <label htmlFor="userSelect">Choose a User </label>
       <select name="userSelect" id="userSelect" onChange={selectUser}>
         {userOptions}
       </select>

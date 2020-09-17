@@ -10,31 +10,22 @@ import { Winner, Loser } from "./components/FinalPage";
 function App() {
   const [username, setUsername] = React.useState("");
   const [pageStatus, updatePageStatus] = React.useState("home");
-
-  const generateMurdererAndMurderee = (username) => {
+  const [counter, setCounter] = React.useState(60);
+  const generateMurderee = (username) => {
     if (username) {
       const potentialSuspects = userArray.filter(
         (user) => user.github !== username
       );
-
       const getRandomNumber = (length) => {
         return Math.floor(Math.random() * Math.floor(length));
       };
-
       let numberOne = getRandomNumber(potentialSuspects.length);
-      let numberTwo;
-
-      do {
-        numberTwo = getRandomNumber(potentialSuspects.length);
-      } while (numberOne === numberTwo);
-
-      let murderer = potentialSuspects[numberOne];
-      let murderee = potentialSuspects[numberTwo];
-      return [murderee, murderer];
+      let murderee = potentialSuspects[numberOne];
+      return murderee;
     }
   };
   //murderee is index 0 in array, and murderer is index 1
-  const murdererAndMurderee = generateMurdererAndMurderee(username);
+  const murderee = generateMurderee(username);
 
   if (pageStatus === "home") {
     return (
@@ -46,9 +37,9 @@ function App() {
           username={username}
           setUsername={setUsername}
         ></UserSelection>
-        {username && murdererAndMurderee ? (
+        {username && murderee ? (
           <GenerateEmail
-            murderee={murdererAndMurderee[0].name}
+            murderee={murderee.name}
             username={username}
             pageStatus={pageStatus}
             updatePageStatus={updatePageStatus}
@@ -56,25 +47,41 @@ function App() {
         ) : null}
       </div>
     );
-  } else if (pageStatus === "location") {
+  } else if (pageStatus === "location" || pageStatus === "weapons") {
     return (
       <div>
         <TimeBar
+          counter={counter}
+          setCounter={setCounter}
           pageStatus={pageStatus}
           updatePageStatus={updatePageStatus}
         ></TimeBar>
-        {/* <GenerateOptions
+        <GenerateOptions
+          user={username}
+          murderee={murderee.github}
           counter={counter}
           setCounter={setCounter}
           updatePageStatus={updatePageStatus}
           pageStatus={pageStatus}
-        ></GenerateOptions> */}
+        ></GenerateOptions>
       </div>
     );
   } else if (pageStatus === "winner") {
-    return <Winner username={username}></Winner>;
+    return (
+      <Winner
+        username={username}
+        pageStatus={pageStatus}
+        updatePageStatus={updatePageStatus}
+      ></Winner>
+    );
   } else if (pageStatus === "loser") {
-    return <Loser murderee={murdererAndMurderee[0].github}></Loser>;
+    return (
+      <Loser
+        murderee={murderee.github}
+        pageStatus={pageStatus}
+        updatePageStatus={updatePageStatus}
+      ></Loser>
+    );
   }
 }
 export default App;
