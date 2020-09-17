@@ -35,14 +35,6 @@ function App() {
   };
   const murdererAndMurderee = generateMurdererAndMurderee(username);
 
-  // function Greeting(props) {
-  //   const locationStatus = props.isLoggedIn;
-  //   if (isLoggedIn) {
-  //     return <UserGreeting />;
-  //   }
-  //   return <GuestGreeting />;
-  // }
-
   if (pageStatus === "home") {
     return (
       // location status is false - render the  line 41-52
@@ -67,7 +59,11 @@ function App() {
     return (
       <div>
         <TimeBar counter={counter} setCounter={setCounter}></TimeBar>
-        <GenerateOptions></GenerateOptions>;
+        <GenerateOptions
+          counter={counter}
+          setCounter={setCounter}
+        ></GenerateOptions>
+        ;
       </div>
     );
   }
