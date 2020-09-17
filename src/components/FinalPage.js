@@ -11,7 +11,7 @@ const Loser = ({ murderee, pageStatus, updatePageStatus }) => {
     updatePageStatus("home");
   };
   return (
-    <div>
+    <div class="final-page">
       <h2>You let them die! Try again, better luck next time!</h2>
       <img src={image} alt="murdered person"></img>
       <button onClick={startAgain}>Redeem Yourself</button>
@@ -29,8 +29,8 @@ const Winner = ({ username, pageStatus, updatePageStatus }) => {
     updatePageStatus("home");
   };
   return (
-    <div>
-      <h2>You're a winner!</h2>
+    <div class="final-page">
+      <h2>You are a winner baaaby!</h2>
       <img src={image} alt="Winner face"></img>
       <button onClick={startAgain}>Save another Life</button>
     </div>

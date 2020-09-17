@@ -65,13 +65,13 @@ const GenerateOptions = ({
       <article key={option.name}>
         <h3>{option.name}</h3>
         <button onClick={rightOption} name={option.name}>
-          <img src={option.image} alt={option.name} width="500" height="600" />
+          <img src={option.image} alt={option.name} width="600" height="500" />
         </button>
       </article>
     );
   });
 
-  return <div>{options}</div>;
+  return <div class="options-div">{options}</div>;
 };
 
 export default GenerateOptions;
