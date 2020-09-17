@@ -9,7 +9,7 @@ const TimeBar = ({ pageStatus, updatePageStatus, counter, setCounter }) => {
 
   // if countdown is 0 - the loser page loads
   React.useEffect(() => {
-    if (counter === 0) {
+    if (counter <= 0) {
       updatePageStatus("loser");
     }
   }, [counter, updatePageStatus]);
