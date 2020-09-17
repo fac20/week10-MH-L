@@ -4,11 +4,11 @@ import userArray from "./../utils/users.js";
 const GenerateEmail = ({
   username,
   murderee,
-  locationStatus,
-  updateLocationStatus,
+  pageStatus,
+  updatePageStatus,
 }) => {
   const getUserInfo = userArray.filter((user) => user.github === username);
-  const turnToTrue = () => updateLocationStatus(true);
+  const turnToLocation = () => updatePageStatus("location");
   return (
     <article>
       <h2>Subject: HELP!!!</h2>
@@ -25,7 +25,7 @@ const GenerateEmail = ({
         <br />
         Lots of love, a fellow coder x
       </p>
-      <button onClick={turnToTrue}>
+      <button onClick={turnToLocation}>
         What the FAC? Let's Solve some Crime!
       </button>
     </article>
