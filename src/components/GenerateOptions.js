@@ -5,7 +5,12 @@ import weapons from "./../utils/weapons";
 //Generate 3 options
 //Location Space4, Finsbury Park, Roti Place
 
-const GenerateOptions = ({ counter, setCounter }) => {
+const GenerateOptions = ({
+  counter,
+  setCounter,
+  pageStatus,
+  updatePageStatus,
+}) => {
   // if (pageStatus === "location") {
   //   array = locations;
   // }
@@ -16,11 +21,10 @@ const GenerateOptions = ({ counter, setCounter }) => {
   // event listener
   const rightOption = (event) => {
     if (event.target.alt === rightLocation) {
-      console.log("yayaa!");
+      return updatePageStatus("winner");
       //go to the next page
       // pageStatus === "weapon"
     } else {
-      console.log(event.target);
       console.log("nay");
       setCounter(counter - 15);
     }
