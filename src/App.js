@@ -5,11 +5,11 @@ import GenerateEmail from "./components/GenerateEmail";
 import GenerateOptions from "./components/GenerateOptions";
 import userArray from "./utils/users.js";
 import TimeBar from "./components/TimeBar";
+import { Winner, Loser } from "./components/FinalPage";
 
 function App() {
   const [username, setUsername] = React.useState("");
   const [pageStatus, updatePageStatus] = React.useState("home");
-  const [counter, setCounter] = React.useState(60);
 
   const generateMurdererAndMurderee = (username) => {
     if (username) {
@@ -33,6 +33,7 @@ function App() {
       return [murderee, murderer];
     }
   };
+  //murderee is index 0 in array, and murderer is index 1
   const murdererAndMurderee = generateMurdererAndMurderee(username);
 
   if (pageStatus === "home") {
@@ -58,14 +59,22 @@ function App() {
   } else if (pageStatus === "location") {
     return (
       <div>
-        <TimeBar counter={counter} setCounter={setCounter}></TimeBar>
-        <GenerateOptions
+        <TimeBar
+          pageStatus={pageStatus}
+          updatePageStatus={updatePageStatus}
+        ></TimeBar>
+        {/* <GenerateOptions
           counter={counter}
           setCounter={setCounter}
-        ></GenerateOptions>
-        ;
+          updatePageStatus={updatePageStatus}
+          pageStatus={pageStatus}
+        ></GenerateOptions> */}
       </div>
     );
+  } else if (pageStatus === "winner") {
+    return <Winner username={username}></Winner>;
+  } else if (pageStatus === "loser") {
+    return <Loser murderee={murdererAndMurderee[0].github}></Loser>;
   }
 }
 export default App;
