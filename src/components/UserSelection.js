@@ -1,14 +1,9 @@
 import React from "react";
 import userArray from "./../utils/users.js";
 
-const UserSelection = () => {
-  const [username, setUsername] = React.useState("");
-  // const [originalSuspects, updateSuspects] = React.useState(userArray);
+const UserSelection = ({ username, setUsername }) => {
   const selectUser = (event) => {
     setUsername(event.target.value);
-    const potentialSuspects = userArray.filter(
-      (user) => user.github !== event.target.value
-    );
   };
 
   const userOptions = userArray.map((user) => {
