@@ -56,6 +56,7 @@ const GenerateOptions = ({
       //   return updatePageStatus("winner");
     } else {
       setCounter((timer) => timer - 15);
+      // setCounter(counter - 15);
     }
   };
   // renders the three options
@@ -70,7 +71,7 @@ const GenerateOptions = ({
     );
   });
 
-  return <div class="options-div">{options}</div>;
+  return <div className="options-div">{options}</div>;
 };
 
 export default GenerateOptions;

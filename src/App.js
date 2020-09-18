@@ -35,7 +35,7 @@ function App() {
       // location status is false - render the  line 41-52
       // when you click button = location Sttus True
       //put the status update in generate email
-      <div class="home-div">
+      <div className="home-div">
         <UserSelection
           username={username}
           setUsername={setUsername}
@@ -75,6 +75,9 @@ function App() {
         username={username}
         pageStatus={pageStatus}
         updatePageStatus={updatePageStatus}
+        setUsername={setUsername}
+        counter={counter}
+        setCounter={setCounter}
       ></Winner>
     );
   } else if (pageStatus === "loser") {
@@ -83,6 +86,9 @@ function App() {
         murderee={murderee.github}
         pageStatus={pageStatus}
         updatePageStatus={updatePageStatus}
+        setUsername={setUsername}
+        counter={counter}
+        setCounter={setCounter}
       ></Loser>
     );
   }
