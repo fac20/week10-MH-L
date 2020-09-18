@@ -2,10 +2,16 @@ import React from "react";
 
 const TimeBar = ({ pageStatus, updatePageStatus, counter, setCounter }) => {
   // make timer count down per second
+  //only happens when the page has rendered
   React.useEffect(() => {
-    const startTimer = setTimeout(() => setCounter((timer) => timer - 1), 1000);
-    return () => clearTimeout(startTimer);
-  }, [counter, setCounter]);
+    // const startTimer = setTimeout(() => setCounter(counter - 1), 1000);
+    // What is the difference between these two?
+    const startTimer = setInterval(() => {
+      setCounter((currentCounter) => currentCounter - 1);
+    }, 1000);
+    // only happens at the end, when the components have been dismounted
+    return () => clearInterval(startTimer);
+  }, [setCounter]);
 
   // if countdown is 0 - the loser page loads
   React.useEffect(() => {
@@ -15,7 +21,7 @@ const TimeBar = ({ pageStatus, updatePageStatus, counter, setCounter }) => {
   }, [counter, updatePageStatus]);
 
   return (
-    <div class="time-div">
+    <div className="time-div">
       <h2>Time Left: {counter}</h2>
     </div>
   );
