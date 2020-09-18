@@ -43,7 +43,7 @@ const GenerateOptions = ({
     () =>
       arrayOption[Math.floor(Math.random() * Math.floor(arrayOption.length))]
         .name,
-    [pageStatus] //why does the first time you rended give you one choice and then change?
+    [pageStatus]
   );
 
   // event listener
@@ -54,7 +54,6 @@ const GenerateOptions = ({
       return updatePageStatus("winner");
       // } else if (event.target.alt === rightChoice && pageStatus === "murderer") {
       //   return updatePageStatus("winner");
-      //ASK HOW TO COORDINATE STATE WITH A TIME OUT
     } else {
       setCounter((timer) => timer - 15);
     }
